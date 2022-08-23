@@ -1,5 +1,6 @@
 {
-  "private": true,
+  "name": "easy-h5",
+  "private": false,
   "scripts": {
     "start": "umi dev",
     "build": "umi build",
