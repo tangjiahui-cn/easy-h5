@@ -1,0 +1,16 @@
+.fileItem {
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &Choose {
+    &:extend(.fileItem);
+    background-color: rgba(0, 0, 0, 0.08);
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}

@@ -6,4 +6,8 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
+  devServer: {
+    https: true,
+    port: 10000,
+  },
 });
