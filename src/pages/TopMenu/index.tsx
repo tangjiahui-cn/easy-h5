@@ -13,8 +13,8 @@ import {
 
 export default function () {
   const [size, setSize] = useState<{ w: number; h: number }>({
-    w: 1920,
-    h: 1080,
+    w: 300,
+    h: 800,
   });
   const [scale, setScale] = useState<number>(100); // 当前比例
 
