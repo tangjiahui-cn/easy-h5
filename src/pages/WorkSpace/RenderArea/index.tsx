@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './index.less';
+import { useData } from '@/store/data';
 
 interface IRenderAreaProp {
   w: number;  // 设备实际宽度（相对于屏幕）
@@ -8,7 +9,10 @@ interface IRenderAreaProp {
   y: number;  // 设备实际y坐标（相对于绘制区域顶部）
   background: string; // 背景色
 }
+
+
 export default function () {
+  const {state, dispatch} = useData()
 
   const [info, setInfo] = useState<IRenderAreaProp>({
     w: 300,
@@ -17,6 +21,14 @@ export default function () {
     y: 10,
     background: 'white'
   })
+
+  useEffect(() => {
+    setInfo({
+      ...info,
+      w: state.info.width,
+      h: state.info.height
+    })
+  }, [state.info])
 
   return(
     <div

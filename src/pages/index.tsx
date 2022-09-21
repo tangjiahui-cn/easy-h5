@@ -6,6 +6,7 @@ import WorkerSpace from './WorkSpace';
 import 'antd/dist/antd.css';
 
 export default function IndexPage() {
+
   return (
     <div className={styles.container}>
       <div className={styles.containerInner}>

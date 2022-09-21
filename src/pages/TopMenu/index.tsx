@@ -10,12 +10,10 @@ import {
   DownloadOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
+import { useData } from '@/store/data';
 
 export default function () {
-  const [size, setSize] = useState<{ w: number; h: number }>({
-    w: 300,
-    h: 800,
-  });
+  const {state, dispatch} = useData()
   const [scale, setScale] = useState<number>(100); // 当前比例
 
   const scaleMenu = (
@@ -43,9 +41,32 @@ export default function () {
         <Button>重置</Button>
         <Button>清空</Button>
         <div>
-          <InputNumber style={{ width: 80 }} value={size.w} />
+          <InputNumber style={{ width: 80 }} value={state.info.width}
+            onChange={width => dispatch({
+              type: 'SetInfo',
+              payload: {
+                ...state,
+                info: {
+                  ...state.info,
+                  width
+                }
+              }
+            })}
+          />
           <span style={{ margin: '0 4px' }}>X</span>
-          <InputNumber style={{ width: 80 }} value={size.h} />
+          <InputNumber
+            style={{ width: 80 }}
+            value={state.info.height}
+            onChange={height => dispatch({
+              type: 'SetInfo',
+              payload: {
+                ...state,
+                info: {
+                  ...state.info,
+                  height
+                }
+              }
+            })}/>
           <Dropdown
             overlay={scaleMenu}
             placement={'bottom'}
