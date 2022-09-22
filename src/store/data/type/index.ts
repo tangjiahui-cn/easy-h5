@@ -1,4 +1,4 @@
-import { Action, Store } from 'redux';
+import { Store } from 'redux';
 import Info from './info';
 
 export type IStore = Store
@@ -7,9 +7,6 @@ export interface IState {
 }
 
 export type ReducerState = Info;
-export interface IAction extends Action {
-  payload: IState
-}
 
 export {
   Info

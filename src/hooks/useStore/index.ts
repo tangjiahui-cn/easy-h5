@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Context, Store, IAction, IDataStruct } from './type';
+import { Context, Store, IDataStruct, IDispatch, IActionExt } from './type';
 export * from './type';
 
 /**
@@ -24,7 +24,7 @@ export default function useStore <S>(context: Context<Store>) : IDataStruct<S> {
     })
   }, [])
 
-  function dispatch (action: IAction<S>) : void {
+  const dispatch: IDispatch<S> = (action: IActionExt<S>) => {
     store.dispatch(action)
   }
 

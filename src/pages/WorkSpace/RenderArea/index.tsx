@@ -23,6 +23,14 @@ export default function () {
   })
 
   useEffect(() => {
+    dispatch({
+      type: '',
+      payload: {
+        info: {
+          ...state.info
+        }
+      },
+    })
     setInfo({
       ...info,
       w: state.info.width,

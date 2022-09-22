@@ -10,11 +10,10 @@ import {
   DownloadOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
-import { useData } from '@/store/data';
+import { useData, INFO_TYPE } from '@/store/data';
 
 export default function () {
   const {state, dispatch} = useData()
-  const [scale, setScale] = useState<number>(100); // 当前比例
 
   const scaleMenu = (
     <Menu
@@ -22,7 +21,12 @@ export default function () {
         key: `${scale}`,
         label: `${scale}%`,
       }))}
-      onClick={(k) => setScale(Number(k?.key))}
+      onClick={(k) => {
+        dispatch({
+          type: INFO_TYPE.SET_SCALE,
+          payload: Number(k?.key) / 100
+        })
+      }}
     />
   );
 
@@ -41,32 +45,25 @@ export default function () {
         <Button>重置</Button>
         <Button>清空</Button>
         <div>
-          <InputNumber style={{ width: 80 }} value={state.info.width}
-            onChange={width => dispatch({
-              type: 'SetInfo',
-              payload: {
-                ...state,
-                info: {
-                  ...state.info,
-                  width
-                }
-              }
-            })}
+          <InputNumber style={{ width: 80 }} value={state.info.deviceWidth}
+            onChange={(deviceWidth: number) => {
+              dispatch({
+                type: INFO_TYPE.SET_DEVICE_WIDTH,
+                payload: deviceWidth
+              });
+            }}
           />
           <span style={{ margin: '0 4px' }}>X</span>
           <InputNumber
             style={{ width: 80 }}
-            value={state.info.height}
-            onChange={height => dispatch({
-              type: 'SetInfo',
-              payload: {
-                ...state,
-                info: {
-                  ...state.info,
-                  height
-                }
-              }
-            })}/>
+            value={state.info.deviceHeight}
+            onChange={(deviceHeight: number) => {
+              dispatch({
+                type: INFO_TYPE.SET_DEVICE_HEIGHT,
+                payload: deviceHeight
+              });
+            }}
+          />
           <Dropdown
             overlay={scaleMenu}
             placement={'bottom'}
@@ -81,7 +78,7 @@ export default function () {
                 display: 'inline-block',
               }}
             >
-              {scale}%<CaretDownOutlined />
+              {state.info.scale * 100}%<CaretDownOutlined />
             </div>
           </Dropdown>
         </div>
