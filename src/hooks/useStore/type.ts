@@ -1,5 +1,4 @@
-import { Action, AnyAction, Store } from 'redux';
-export { Action, Store }
+import { AnyAction } from 'redux';
 
 export interface Context<S> {
   store: S;

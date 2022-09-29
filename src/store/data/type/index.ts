@@ -1,13 +1,10 @@
-import { Store } from 'redux';
-import Info from './info';
+import { InfoProp } from './info';
 
-export type IStore = Store
+export * from './info';
+
+export type ReducerState = InfoProp;
 export interface IState {
-  info: Info
+  info: InfoProp
 }
 
-export type ReducerState = Info;
 
-export {
-  Info
-}

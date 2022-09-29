@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Context, Store, IDataStruct, IDispatch, IActionExt } from './type';
+import { Context, IDataStruct, IDispatch, IActionExt } from './type';
+import { Store } from 'redux';
 export * from './type';
 
 /**

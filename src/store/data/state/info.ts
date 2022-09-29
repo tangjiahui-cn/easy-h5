@@ -1,11 +1,11 @@
-import {Info} from '../type'
+import {InfoProp} from '../type'
 /**
  * UI信息
  */
 
 const SCALE = 0.75
 
-export const INIT_INFO: Info = {
+export const INIT_INFO: InfoProp = {
   deviceWidth: 390,
   deviceHeight: 844,
   width: 390 * SCALE,
@@ -13,4 +13,4 @@ export const INIT_INFO: Info = {
   scale: SCALE,
 }
 
-export default INIT_INFO
+export const info: InfoProp = {...INIT_INFO}

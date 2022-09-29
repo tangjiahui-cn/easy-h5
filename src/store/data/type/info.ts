@@ -1,4 +1,4 @@
-export default interface Info {
+export interface InfoProp {
   deviceWidth: number;  // 设备宽度
   deviceHeight: number; // 设备高度
   width: number;  // 编辑器宽度

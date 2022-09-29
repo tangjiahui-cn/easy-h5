@@ -1,4 +1,4 @@
-import { Info, IState, ReducerState } from '../type';
+import { InfoProp, IState, ReducerState } from '../type';
 import { INIT_INFO } from '../state';
 import { IActionAnd } from '@/hooks/useStore';
 
@@ -9,7 +9,7 @@ export const INFO_TYPE = {
   SET_DEVICE_HEIGHT: '4',
 }
 
-export default function info (state: Info = INIT_INFO, action: IActionAnd<IState, Info>): ReducerState {
+export function infoReducer (state: InfoProp = INIT_INFO, action: IActionAnd<IState, InfoProp>): ReducerState {
   switch (action.type) {
     case INFO_TYPE.SET:
       return action?.payload.info;
