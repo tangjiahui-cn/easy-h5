@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import { Button, Dropdown, InputNumber, Menu, Space } from 'antd';
 import {
   ArrowLeftOutlined,
@@ -10,10 +10,10 @@ import {
   DownloadOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
-import { useData, INFO_TYPE } from '@/store/data';
+import { useDataCenter, actions } from '@/hooks/useDataCenter';
 
 export default function () {
-  const {state, dispatch} = useData()
+  const {state, stateRef, dispatch} = useDataCenter()
 
   const scaleMenu = (
     <Menu
@@ -22,10 +22,7 @@ export default function () {
         label: `${scale}%`,
       }))}
       onClick={(k) => {
-        dispatch({
-          type: INFO_TYPE.SET_SCALE,
-          payload: Number(k?.key) / 100
-        })
+        dispatch(actions.editor.setScale(Number(k?.key) / 100))
       }}
     />
   );
@@ -45,23 +42,17 @@ export default function () {
         <Button>重置</Button>
         <Button>清空</Button>
         <div>
-          <InputNumber style={{ width: 80 }} value={state.info.deviceWidth}
+          <InputNumber style={{ width: 80 }} value={state.editor.deviceWidth}
             onChange={(deviceWidth: number) => {
-              dispatch({
-                type: INFO_TYPE.SET_DEVICE_WIDTH,
-                payload: deviceWidth
-              });
+              dispatch(actions.editor.setDeviceWidth(deviceWidth));
             }}
           />
           <span style={{ margin: '0 4px' }}>X</span>
           <InputNumber
             style={{ width: 80 }}
-            value={state.info.deviceHeight}
+            value={state.editor.deviceHeight}
             onChange={(deviceHeight: number) => {
-              dispatch({
-                type: INFO_TYPE.SET_DEVICE_HEIGHT,
-                payload: deviceHeight
-              });
+              dispatch(actions.editor.setDeviceHeight(deviceHeight));
             }}
           />
           <Dropdown
@@ -78,7 +69,7 @@ export default function () {
                 display: 'inline-block',
               }}
             >
-              {state.info.scale * 100}%<CaretDownOutlined />
+              {state.editor.scale * 100}%<CaretDownOutlined />
             </div>
           </Dropdown>
         </div>

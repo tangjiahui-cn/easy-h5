@@ -4,8 +4,12 @@ import LeftMenu from './LeftMenu';
 import PropsMenu from './PropsMenu';
 import WorkerSpace from './WorkSpace';
 import 'antd/dist/antd.css';
+import { useKeyBoardListener } from '@/index';
+import { useDataCenter, actions} from '@/hooks/useDataCenter';
 
 export default function IndexPage() {
+  useKeyBoardListener()
+
 
   return (
     <div className={styles.container}>

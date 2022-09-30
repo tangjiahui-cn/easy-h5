@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './index.less';
-import { useData } from '@/store/data';
+import { useDataCenter } from '@/hooks/useDataCenter';
 
 interface IRenderAreaProp {
   w: number;  // 设备实际宽度（相对于屏幕）
@@ -12,7 +12,7 @@ interface IRenderAreaProp {
 
 
 export default function () {
-  const {state, dispatch} = useData()
+  const {state} = useDataCenter()
 
   const [info, setInfo] = useState<IRenderAreaProp>({
     w: 300,
@@ -23,20 +23,12 @@ export default function () {
   })
 
   useEffect(() => {
-    dispatch({
-      type: '',
-      payload: {
-        info: {
-          ...state.info
-        }
-      },
-    })
     setInfo({
       ...info,
-      w: state.info.width,
-      h: state.info.height
+      w: state.editor.width,
+      h: state.editor.height
     })
-  }, [state.info])
+  }, [state.editor])
 
   return(
     <div
