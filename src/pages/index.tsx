@@ -5,11 +5,10 @@ import PropsMenu from './PropsMenu';
 import WorkerSpace from './WorkSpace';
 import 'antd/dist/antd.css';
 import { useKeyBoardListener } from '@/index';
-import { useDataCenter, actions} from '@/hooks/useDataCenter';
+import { useDataCenter, actions } from '@/hooks/useDataCenter';
 
 export default function IndexPage() {
-  useKeyBoardListener()
-
+  useKeyBoardListener();
 
   return (
     <div className={styles.container}>

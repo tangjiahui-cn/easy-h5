@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useUnmount } from 'ahooks';
-import {activeStatus, activeStatusEnum, resetActiveStatus} from './data';
+import { activeStatus, activeStatusEnum, resetActiveStatus } from './data';
+import { useDataCenter } from '@/hooks/useDataCenter';
 export * from './utils';
 
 /**
@@ -11,37 +12,47 @@ export * from './utils';
  * （2）同时按键监听
  */
 
-export function useKeyBoardListener () {
-  const listenKeyDown = useRef(function (e: any) {
-    const key = e?.key?.toLowerCase()
-    activeStatus[key] = activeStatusEnum.ENABLE
+export function useKeyBoardListener() {
+  const { stateRef, dispatch, actions } = useDataCenter();
 
-    console.log('【down】:', key)
-  })
+  const listenKeyDown = useRef(function (e: any) {
+    const key = e?.key?.toLowerCase();
+    activeStatus[key] = activeStatusEnum.ENABLE;
+
+    // if (key === 'w') {
+    //   dispatch(actions.editor.addDeviceHeight(100))
+    // }
+    //
+    // if (key === 's') {
+    //   dispatch(actions.editor.subDeviceHeight(100))
+    // }
+
+    console.log('【down】:', key);
+  });
 
   const listenKeyUp = useRef(function (e: any) {
-    const key = e?.key?.toLowerCase()
-    activeStatus[key] = activeStatusEnum.CLOSE
+    const key = e?.key?.toLowerCase();
+    activeStatus[key] = activeStatusEnum.CLOSE;
 
-    console.log('【up】:', key)
-  })
+    console.log('【up】:', key);
+  });
 
-  function init () {
-    window.addEventListener('keydown', listenKeyDown.current)
-    window.addEventListener('keyup', listenKeyUp.current)
+  function init() {
+    window.addEventListener('keydown', listenKeyDown.current);
+    window.addEventListener('keyup', listenKeyUp.current);
   }
 
-  function clear () {
-    window.removeEventListener('keydown', listenKeyDown.current)
-    window.removeEventListener('keyup', listenKeyUp.current)
+  function clear() {
+    window.removeEventListener('keydown', listenKeyDown.current);
+    window.removeEventListener('keyup', listenKeyUp.current);
   }
 
   useEffect(() => {
-    init()
-  }, [])
+    init();
+  }, []);
 
   useUnmount(() => {
-    clear()
-    resetActiveStatus()
-  })
+    clear();
+    resetActiveStatus();
+  });
 }

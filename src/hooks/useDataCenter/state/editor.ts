@@ -6,11 +6,11 @@ export interface EditorProps {
   scale: number;
 }
 
-const SCALE = 0.75
-export const editor: EditorProps = {
+const SCALE = 0.75;
+export const INIT_EDITOR: EditorProps = {
   deviceWidth: 390,
   deviceHeight: 844,
   width: 390 * SCALE,
   height: 844 * SCALE,
   scale: SCALE,
-}
+};

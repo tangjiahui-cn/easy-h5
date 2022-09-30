@@ -2,6 +2,6 @@ export interface ConfigProps {
   autoSave: boolean;
 }
 
-export const config: ConfigProps = {
-  autoSave: true
-}
+export const INIT_CONFIG: ConfigProps = {
+  autoSave: true,
+};

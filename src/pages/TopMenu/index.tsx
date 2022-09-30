@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import { Button, Dropdown, InputNumber, Menu, Space } from 'antd';
 import {
   ArrowLeftOutlined,
@@ -13,7 +13,7 @@ import {
 import { useDataCenter, actions } from '@/hooks/useDataCenter';
 
 export default function () {
-  const {state, stateRef, dispatch} = useDataCenter()
+  const { state, stateRef, dispatch } = useDataCenter();
 
   const scaleMenu = (
     <Menu
@@ -22,7 +22,7 @@ export default function () {
         label: `${scale}%`,
       }))}
       onClick={(k) => {
-        dispatch(actions.editor.setScale(Number(k?.key) / 100))
+        dispatch(actions.editor.setScale(Number(k?.key) / 100));
       }}
     />
   );
@@ -39,10 +39,12 @@ export default function () {
     >
       <Space style={{ flex: 1 }}>
         <Button>撤销</Button>
-        <Button>重置</Button>
+        <Button onClick={() => dispatch(actions.editor.reset())}>重置</Button>
         <Button>清空</Button>
         <div>
-          <InputNumber style={{ width: 80 }} value={state.editor.deviceWidth}
+          <InputNumber
+            style={{ width: 80 }}
+            value={state.editor.deviceWidth}
             onChange={(deviceWidth: number) => {
               dispatch(actions.editor.setDeviceWidth(deviceWidth));
             }}
